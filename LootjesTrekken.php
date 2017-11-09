@@ -19,9 +19,9 @@ class LootjesTrekken {
 			if(count($names)<2) {
 				$this->addError("Er moeten minimaal 2 namen geregistreerd worden");
 			}
-			//Er mogen maximaal 30 namen geregistreerd worden
-			if(count($names)>30){
-				$this->addError("Er mogen maximaal 30 namen geregistreerd worden");
+			//Er mogen maximaal 10 namen geregistreerd worden
+			if(count($names)>10){
+				$this->addError("Er mogen maximaal 10 namen geregistreerd worden");
 			}
 			else{
 				$this->randomNamePicker($names);
