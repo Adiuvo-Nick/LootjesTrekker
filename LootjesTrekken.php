@@ -51,8 +51,7 @@ class LootjesTrekken {
 	}
 
 	/**
-     * Hier worden de namen gematched 
-     * @param $error
+     * Hier worden de namen gematched
      */
 	private function randomNamePicker($names) {
 		foreach ($names as &$name) {
@@ -68,6 +67,8 @@ class LootjesTrekken {
 
 			if ( $name != $match && $match != "" ) {
 				echo "$name $match <br/>";
+				unset($names[$random]);
+				unset($name);
 			}
 		}
 	}
