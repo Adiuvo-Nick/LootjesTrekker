@@ -23,25 +23,20 @@ if (!empty($_POST)) {
         var tmp_dom = null;
         var counter = 1;
         function addUser(){
-            //Store tmp object for creation of more (if one isnt already stored)
             if(tmp_dom == null) tmp_dom = document.getElementById('insert_zone').children[0];
 
-            //Create new node
             new_node = tmp_dom.cloneNode(true);
-            //Blank inputs and update form ID's
             inputs = new_node.getElementsByTagName('input')
             for(var i=0; i<inputs.length; i++){
                 inputs[i].value ='';
                 inputs[i].name = inputs[i].name.slice(0, -1)+counter;
             }
-            //Add new row
             document.getElementById('insert_zone').appendChild(new_node);
             counter++; document.getElementById('count').value = counter;
   
             return false;
         }
         function removeRow(me){
-            //Store so we can add new ones (assumings its not already there)
             if(tmp_dom == null) tmp_dom = document.getElementById('insert_zone').children[0];
             document.getElementById('insert_zone').removeChild(me.parentNode);
         }
