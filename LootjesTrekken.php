@@ -1,17 +1,17 @@
 <?php
 class LootjesTrekken {
-	private $users;
     private $errors = [];
-
 	public function run() {
 
 			//Haalt de namen op en zet ze in een array
 			$names = array();
+			$list = array();
 
 			for($c=0;$c<$_POST['count'];$c++){
 				//Check of value niet empty is
 				if(!empty($_POST['user_name_'.$c]) ){
 					$names[] = $_POST['user_name_'.$c];
+					$list[] = $_POST['user_name_'.$c];
 				}
 			}
 
@@ -24,7 +24,7 @@ class LootjesTrekken {
 				$this->addError("Er mogen maximaal 10 namen geregistreerd worden");
 			}
 			else{
-				$this->randomNamePicker($names);
+				$this->randomNamePicker($names,$list);
 			}
 
 		$this->render();
@@ -32,7 +32,7 @@ class LootjesTrekken {
 
 
 	private function render() {
-    
+
         if (count($this->errors) > 0) {
             echo '<p style="color: red; font-weight: bold;">';
             echo 'Er ging iets fout';
@@ -52,22 +52,23 @@ class LootjesTrekken {
 	/**
      * Hier worden de namen gematched
      */
-	private function randomNamePicker($names) {
+	private function randomNamePicker($names ,$list) {
 		foreach ($names as &$name) {
-
-			$count = count($names)-1;
+			$list = array_values($list);
+			$count = count($list)-1;
 			$random = rand(0, $count);
-			$match = $names[$random];
+			$match = $list[$random];
+
 
 			while ($name == $match) {
 				$random = rand(0, $count);
-				$match = $names[$random];
+				$match = $list[$random];
 			}
 
+
 			if ( $name != $match && $match != "" ) {
-				echo "$name $match <br/>";
-				unset($names[$random]);
-				unset($name);
+				echo "$name Heeft $match <br/>";
+				unset($list[$random]);
 			}
 		}
 	}

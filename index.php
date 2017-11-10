@@ -33,7 +33,7 @@ if (!empty($_POST)) {
             }
             document.getElementById('insert_zone').appendChild(new_node);
             counter++; document.getElementById('count').value = counter;
-  
+
             return false;
         }
         function removeRow(me){
